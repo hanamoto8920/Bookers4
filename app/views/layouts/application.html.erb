@@ -10,6 +10,23 @@
   </head>
 
   <body>
+
+    <header>
+      <h1>Bookers</h1>
+
+
+      <span><%= link_to "Home", books_path  %></span>
+      <span><%= link_to "About", books_path  %></span>
+      <span><%= link_to "sign in", new_user_session_path  %></span>
+      <span><%= link_to "sign up", books_path  %></span>
+
+    </header>
+
+
     <%= yield %>
+
+    <footer>
+      CopyRight Infratop.inc
+    </footer>
   </body>
 </html>

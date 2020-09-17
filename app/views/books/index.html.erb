@@ -30,7 +30,8 @@
 <!--投稿部分-->
 <h1>New book</h1>
 <!-- form_with部分 -->
-<%= form_for (@book) do |f| %>
+
+<%= form_with model:@book, url: books_path, local:true do |f| %>
 
    <!--エラー文章部分-->
   <% if @book.errors.any? %>
