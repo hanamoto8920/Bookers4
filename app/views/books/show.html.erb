@@ -6,13 +6,13 @@
 <table>
     <tbody>
         <tr>
-            
+
             <td>
-                <p>ユーザー情報</p>
+                <p><%= link_to 'User name', books_path %></p>
             </td>
             <td>
                 <!--タイトル-->
-                <p><%= @book.title %></p>
+                <p><%= link_to @book.title, book_path(@book.id) %></p>
             </td>
             <td>
                 <!--オピニオン-->
@@ -23,9 +23,6 @@
             </td>
             <td>
                 <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？?" %>
-            </td>
-            <td>
-                <%= link_to "Back", books_path %>
             </td>
         </tr>
     </tbody>
@@ -41,7 +38,7 @@
    <!--エラー文章部分-->
   <% if @new.errors.any? %>
         <h2><%= @new.errors.count %>件のエラーが発生しました。</h2>
-        
+
         <ul>
         <% @new.errors.full_messages.each do |message| %>
           <li><%= message %></li>
