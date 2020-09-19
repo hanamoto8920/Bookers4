@@ -2,13 +2,28 @@
 
 <%= notice %>
 
+<!--マイページ表示部分-->
+<h1>User info</h1>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+
+<table>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+      <th></th>
+    </tr>
+</table>
+<p><%= link_to '設定', edit_user_path(current_user.id) %></p>
+
+<!--本の詳細部分-->
 <h1>Book detail</h1>
+
 <table>
     <tbody>
         <tr>
 
             <td>
-                <p><%= link_to 'User name', books_path %></p>
+                <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
             </td>
             <td>
                 <!--タイトル-->
