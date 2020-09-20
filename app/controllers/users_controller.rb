@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  
+  def index
+    @users = User.all
+    @book = Book.new
+  end
 
   def show
     @user = User.find(params[:id])
@@ -12,14 +17,18 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to books_path
+    if @user.update(user_params)
+    redirect_to books_path notice: "You have updated user successfully."
+    else
+     render :edit
+    end
+     
   end
 
 
   private
   def user_params
-     params.require(:user).permit(:profile_image, :name)
+     params.require(:user).permit(:profile_image, :name, :introduction)
   end
 
 

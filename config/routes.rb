@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   # ユーザーモデルのルーティング
   # ユーザーコントローラ
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :index]
 
   # ログイン認証が成功した後、投稿画像の一覧画面が表示される
   # root 'books#index'

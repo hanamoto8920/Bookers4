@@ -1,17 +1,33 @@
 
+
+  <!--エラー文章部分-->
+  <% if @user.errors.any? %>
+        <h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
+
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+   <% end %>
+
  <!--ユーザー情報編集ページ-->
-  
+
  <%= form_with model:@user, local:true do |f| %>
- 
- <h2>名前</h2>
+
+ <h2>Name</h2>
  <%= f.text_field :name %>
- 
+
  <h2>Image</h2>
   <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
-  
-  
+
+
+ <h2>Introduction</h2>
+  <%= f.text_area :introduction %>
+
+
   <%= f.submit "Update User" %>
  <% end %>
- 
- 
- 
+
+
+

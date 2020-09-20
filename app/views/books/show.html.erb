@@ -12,6 +12,11 @@
       <th><%= @user.name %></th>
       <th></th>
     </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+      <th></th>
+    </tr>
 </table>
 <p><%= link_to '設定', edit_user_path(current_user.id) %></p>
 
@@ -21,10 +26,12 @@
 <table>
     <tbody>
         <tr>
-
             <td>
-                <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+                <%= link_to books_path do %>
+                    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+                <% end %>
             </td>
+
             <td>
                 <!--タイトル-->
                 <p><%= link_to @book.title, book_path(@book.id) %></p>

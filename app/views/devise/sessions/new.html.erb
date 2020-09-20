@@ -1,19 +1,22 @@
 <!--ログインページ-->
-                        <h2>ユーザーログイン</h2>
-
-                          <h4>メールアドレスと<br>パスワードを入力してください。</h4>
+<h1>Log in</h1>
 
 
-                      <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
-                        <div class="form-group has-icon">
-                          <label class="control-label sr-only" for="inputEmail">Email</label>
-                          <%= f.email_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"メールアドレス"%>
-                          <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
-                        </div>
-                        <div class="form-group has-icon">
-                          <label class="control-label sr-only" for="inputPassword">Password</label>
-                          <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
-                          <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
-                        </div>
-                        <%= f.submit "サインイン", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-                      <% end %>
+
+<%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
+
+
+
+
+<P>Name</P>
+<%= f.text_field :name %>
+
+<p>Password </p>
+<%= f.password_field :password  %>
+
+</br>
+<%= f.submit "Log in" %>
+<% end %>
+
+
+<%= link_to "sign up", new_user_registration_path %>
