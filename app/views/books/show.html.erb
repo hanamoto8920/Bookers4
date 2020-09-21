@@ -4,75 +4,78 @@
 
 <!--マイページ表示部分-->
 <h1>User info</h1>
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+         <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+        
+        <table>
+            <tr>
+              <th>name</th>
+              <th><%= @user.name %></th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= @user.introduction %></th>
+              <th></th>
+            </tr>
+        </table>
 
-<table>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-      <th></th>
-    </tr>
-</table>
-<p><%= link_to '設定', edit_user_path(current_user.id) %></p>
+       <%= link_to '設定', edit_user_path(current_user.id) %>
 
 <!--本の詳細部分-->
 <h1>Book detail</h1>
-
-<table>
-    <tbody>
-        <tr>
-            <td>
-                <%= link_to books_path do %>
-                    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-                <% end %>
-            </td>
-
-            <td>
-                <!--タイトル-->
-                <p><%= link_to @book.title, book_path(@book.id) %></p>
-            </td>
-            <td>
-                <!--オピニオン-->
-                <p><%= @book.body %></p>
-            </td>
-            <td>
-                <%= link_to "Edit", edit_book_path(@book.id) %>
-            </td>
-            <td>
-                <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？?" %>
-            </td>
-        </tr>
-    </tbody>
-</table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <%= link_to books_path do %>
+                                <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+                            <% end %>
+                        </td>
+                        <td>
+                            <!--タイトル-->
+                            <p><%= link_to @book.title, book_path(@book.id) %></p>
+                        </td>
+                        <td>
+                            <!--オピニオン-->
+                            <p><%= @book.body %></p>
+                        </td>
+                        <!--もしログインしてるユーザーと投稿した人が一致していたら表示できる-->
+                        <% if @book.user == current_user %>
+                            <td>
+                                <%= link_to "Edit", edit_book_path(@book.id) %>
+                            </td>
+                            <td>
+                                <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？?" %>
+                            </td>
+                        <% end %>
+            
+                    </tr>
+                </tbody>
+            </table>
 
 
 
 <!--投稿部分-->
-<h1>New book</h1>
-<!-- form_with部分 -->
-<%= form_for (@new) do |f| %>
-
-   <!--エラー文章部分-->
-  <% if @new.errors.any? %>
-        <h2><%= @new.errors.count %>件のエラーが発生しました。</h2>
-
-        <ul>
-        <% @new.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <h1>New book</h1>
+        <!-- form_with部分 -->
+        <%= form_for (@new) do |f| %>
+        
+           <!--エラー文章部分-->
+          <% if @new.errors.any? %>
+                <h2><%= @new.errors.count %>件のエラーが発生しました。</h2>
+        
+                <ul>
+                <% @new.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+           <% end %>
+        
+          <h4>Title</h4>
+          <%= f.text_field :title %>
+        
+          <h4>Opinion</h4>
+          <%= f.text_area :body %>
+        
+          <%= f.submit 'Create Book' %>
         <% end %>
-        </ul>
-   <% end %>
-
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit 'Create Book' %>
-<% end %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  # get 'users/show'
   # get 'books/index'
   # get 'books/create'
   # get 'books/edit'
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   # # ホームのコントローラ
   root "homes#top"
+  get "home/about" => "homes#index"
+  
 
   # ユーザーモデルのルーティング
   # ユーザーコントローラ

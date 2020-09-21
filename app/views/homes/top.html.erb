@@ -1,15 +1,17 @@
+<!--ログインする前のページ-->
 <!--トップページ-->
 <%= notice %>
 
-<h1>welcome to Bookers !!</h1>
 
-<h2>
-  In Bookers,<br>
-  you can share and exchange your opinions , inpressions , and emotions<br>
-  about various books!
-</h2>
+        <h1>welcome to <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Bookers !!</h1>
+
+        <h2>
+          In <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Bookers,<br>
+          you can share and exchange your opinions , inpressions , and emotions<br>
+          about various books!
+        </h2>
 
 
 
-<p><%= link_to "log in", new_user_session_path %></p>
-<p><%= link_to "Sign up", new_user_registration_path  %></p>
+        <p><%= link_to "log in", new_user_session_path, class: "btn btn-default" %></p>
+        <p><%= link_to "Sign up", new_user_registration_path, class: "btn btn-default"%></p>

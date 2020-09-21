@@ -3,7 +3,7 @@
 
  <!--エラー文章部分-->
   <% if @user.errors.any? %>
-        <h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
+        <h2><%= @user.errors.count %>error</h2>
 
         <ul>
         <% @user.errors.full_messages.each do |message| %>

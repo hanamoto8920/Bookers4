@@ -6,6 +6,7 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @user = current_user
+    
   end
 
   def create
@@ -44,7 +45,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to books_path, notice: "Book was successfully destroyed."
+    redirect_to user_path(current_user.id), notice: "Book was successfully destroyed."
   end
 
   private
