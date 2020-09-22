@@ -1,28 +1,42 @@
 <!--登録したアカウント一覧ページ-->
 
-
-<!--マイページ表示部分-->
-        <h1>User info</h1>
-        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-        
-        <table>
-            <tr>
-              <th>name</th>
-              <th><%= @user.name %></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>introduction</th>
-              <th><%= @user.introduction %></th>
-              <th></th>
-            </tr>
-        </table>
-        <%= link_to '設定', edit_user_path(current_user.id) %>
-<!--登録したアカウントの一覧部分-->
-
-        <h1>Users</h1>
-        
-        <table>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <!--マイページ表示部分-->
+      <h1>User info</h1>
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+      <table class="table">
+        <tr>
+          <th>name</th>
+          <th><%= @user.name %></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= @user.introduction %></th>
+          <th></th>
+        </tr>
+      </table>
+      
+      <button type="button" class="btn btn-default btn-lg active" aria-label="Left Align"><%= link_to '', edit_user_path(current_user.id), class: "glyphicon glyphicon-wrench" %></button>
+      
+      <!--投稿部分-->
+      <h1>New book</h1>
+      <!-- form_with部分 -->
+      <%= form_with model:@book, url: books_path, local:true do |f| %>
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+        <h4>Opinion</h4>
+        <%= f.text_area :body %>
+        <%= f.submit 'Create Book', class: "btn btn-info active"%>
+      <% end %>
+    </div>
+    
+    <div class="col-xs-9">
+     <h1>Users</h1>
+      <table class="table">
+        <!--登録したアカウントの一覧部分-->
           <thead>
             <tr>
               <th>image</th>
@@ -30,28 +44,26 @@
               <th></th>
             </tr>
           </thead>
+        
           <tbody>
-            
             <% @users.each do |user| %>
               <tr>
                 <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></td>
                 <td><%= user.name %></td>
-                <td><%= link_to "Show", user_path(user.id) %></td>
+                <td><%= link_to "Show", user_path(user.id), class: "btn btn-info active" %></td>
               </tr>
             <% end %>
           </tbody>
-        </table>
+      </table>
+    </div>
+  </div>
+</div>
 
-        <!--投稿部分-->
-        <h1>New book</h1>
-        <!-- form_with部分 -->
-        
-        <%= form_with model:@book, url: books_path, local:true do |f| %>
-          <h4>Title</h4>
-          <%= f.text_field :title %>
-        
-          <h4>Opinion</h4>
-          <%= f.text_area :body %>
-        
-          <%= f.submit 'Create Book'%>
-        <% end %>
+
+
+
+
+
+
+
+
